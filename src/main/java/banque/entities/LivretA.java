@@ -1,7 +1,10 @@
 package banque.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Représente le concept de Livret A
@@ -10,12 +13,18 @@ import javax.persistence.Entity;
  *
  */
 @Entity
+@Table(name="livret_a")
 public class LivretA extends Compte{
 	
 	/**
 	 * Constructeur 
 	 */
 	public LivretA() {
+	}
+	
+	public LivretA(String numero, double solde, List<Client> proprietaires, double taux) {
+		super(numero, solde, proprietaires);
+		this.taux = taux;
 	}
 	
 	@Column(name="TAUX")

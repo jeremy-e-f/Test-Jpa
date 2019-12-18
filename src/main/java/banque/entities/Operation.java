@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
@@ -28,7 +30,15 @@ public class Operation {
 	public Operation() {
 	}
 	
+	public Operation(LocalDate date, double montant, String motif, Compte compte) {
+		this.date = date;
+		this.montant = montant;
+		this.motif = motif;
+		this.compte = compte;
+	}
+
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID")
 	private int id;					/** Identifiant */
 	

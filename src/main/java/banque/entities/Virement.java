@@ -1,5 +1,7 @@
 package banque.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -17,6 +19,11 @@ public class Virement extends Operation{
 	 * Constructeur
 	 */
 	public Virement() {
+	}
+	
+	public Virement(LocalDate date, double montant, String motif, Compte compte, String beneficiaire) {
+		super(date, montant, motif, compte);
+		this.beneficiaire = beneficiaire;
 	}
 	
 	@Column(name="beneficiaire")

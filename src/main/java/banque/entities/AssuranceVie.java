@@ -1,6 +1,7 @@
 package banque.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +23,12 @@ public class AssuranceVie extends Compte{
 	public AssuranceVie() {
 	}
 	
+	public AssuranceVie(String numero, double solde, List<Client> proprietaires, LocalDate dateFin, double taux) {
+		super(numero, solde, proprietaires);
+		this.dateFin = dateFin;
+		this.taux = taux;
+	}
+
 	@Column(name="DATE_FIN")
 	//@Temporal(TemporalType.DATE)
 	private LocalDate dateFin;

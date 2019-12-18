@@ -14,6 +14,13 @@ public class Adresse {
 	public Adresse() {
 	}
 	
+	public Adresse(int numero, String rue, int codePostal, String ville) {
+		this.numero = numero;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+	}
+
 	@Column(name="NUMERO")
 	private int numero;     /** Numéro */
 	
