@@ -1,9 +1,14 @@
 package fr.diginamic.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 /**
  * Représente le concept de livre
@@ -13,6 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="livre")
 public class Livre {
+	
 	/**
 	 * Constructeur
 	 */
@@ -20,14 +26,21 @@ public class Livre {
 	}
 	
 	@Id
-	private int id; 		/** Identifiant */
+	@Column(name="ID")
+	private int id; 						/** Identifiant */
 	
 	@Column(name= "TITRE")
-	private String titre;   /** Titre  */
+	private String titre;   				/** Titre  */
 	
 	@Column(name= "AUTEUR")
-	private String auteur; 	/** Auteur */
-
+	private String auteur; 					/** Auteur */
+	
+	@ManyToMany
+	@JoinTable(name="compo",
+		joinColumns= @JoinColumn(name="ID_LIV", referencedColumnName="ID"),
+		inverseJoinColumns= @JoinColumn(name="ID_EMP", referencedColumnName= "ID"))
+	private List<Emprunt> listeEmprunts; 	/** Liste des emprunts qui font référence au livre */
+	
 	/** Getter
 	 * @return the id
 	 */
@@ -68,6 +81,20 @@ public class Livre {
 	 */
 	public void setAuteur(String auteur) {
 		this.auteur = auteur;
+	}
+
+	/** Getter
+	 * @return the listeEmprunts
+	 */
+	public List<Emprunt> getListeEmprunts() {
+		return listeEmprunts;
+	}
+
+	/** Setter
+	 * @param listeEmprunts the listeEmprunts to set
+	 */
+	public void setListeEmprunts(List<Emprunt> listeEmprunts) {
+		this.listeEmprunts = listeEmprunts;
 	}
 
 	/* (non-Javadoc)
